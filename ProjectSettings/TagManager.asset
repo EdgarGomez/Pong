@@ -8,6 +8,8 @@ TagManager:
   - BluePlayer
   - TopBottomWalls
   - Ball
+  - LeftGoalLine
+  - RightGoalLine
   layers:
   - Default
   - TransparentFX
@@ -47,6 +49,12 @@ TagManager:
     locked: 0
   - name: Field
     uniqueID: 2842270441
+    locked: 0
+  - name: MiddleCircle
+    uniqueID: 1853624733
+    locked: 0
+  - name: Center
+    uniqueID: 3894322159
     locked: 0
   - name: Ball
     uniqueID: 3179006329

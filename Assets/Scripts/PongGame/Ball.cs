@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
     public float speed = 2f;
     private Rigidbody2D rb;
+    public TextMeshProUGUI bluePlayerGoalsText;
+    public TextMeshProUGUI redPlayerGoalsText;
+    int bluePlayerGoalsCounter = 1;
+    int redPlayerGoalsCounter = 1;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         Invoke("GoBall", 1);
     }
-
 
     void GoBall()
     {
@@ -39,11 +43,20 @@ public class Ball : MonoBehaviour
         Invoke("GoBall", 1);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.collider.CompareTag("Player"))
+        if (other.CompareTag("LeftGoalLine"))
         {
-            rb.velocity = Vector2.Reflect(rb.velocity, collision.contacts[0].normal);
+            bluePlayerGoalsText.text = (bluePlayerGoalsCounter++).ToString();
+            ResetBall();
+            RestartGame();
+        }
+
+        if (other.CompareTag("RightGoalLine"))
+        {
+            redPlayerGoalsText.text = (redPlayerGoalsCounter++).ToString();
+            ResetBall();
+            RestartGame();
         }
     }
 }

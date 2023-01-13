@@ -5,12 +5,7 @@ using UnityEngine;
 public class PlayersController : MonoBehaviour
 {
     private float playerSpeed = 10.0f;
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
     void Update()
     {
         float redPlayerMovement = Input.GetAxis("Vertical");
@@ -23,5 +18,6 @@ public class PlayersController : MonoBehaviour
         {
             transform.Translate(0f, bluePlayerMovement * playerSpeed * Time.deltaTime, 0f);
         }
+
     }
 }
