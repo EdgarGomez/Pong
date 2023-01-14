@@ -7,19 +7,25 @@ using UnityEngine.UI;
 
 public class Ball : MonoBehaviour
 {
-    public float speed = 2f;
+    [SerializeField]
+    private TextMeshProUGUI bluePlayerGoalsText;
+    [SerializeField]
+    private TextMeshProUGUI redPlayerGoalsText;
+    [SerializeField]
+    private TextMeshProUGUI winnerMessage;
+    [SerializeField]
+    private TextMeshProUGUI optionsMessage;
+    [SerializeField]
+    private ParticleSystem blueParticles;
+    [SerializeField]
+    private ParticleSystem redParticles;
+    private float speed = 10f;
     private Rigidbody2D rb;
-    public TextMeshProUGUI bluePlayerGoalsText;
-    public TextMeshProUGUI redPlayerGoalsText;
-    public TextMeshProUGUI winnerMessage;
-    public TextMeshProUGUI optionsMessage;
-    int bluePlayerGoalsCounter = 0;
-    int redPlayerGoalsCounter = 0;
-    int maxGoalsToWin = 2;
-    Color32 blueColor = new Color32(29, 67, 243, 255);
-    Color32 redColor = new Color32(204, 0, 0, 255);
-    public ParticleSystem blueParticles;
-    public ParticleSystem redParticles;
+    private int bluePlayerGoalsCounter = 0;
+    private int redPlayerGoalsCounter = 0;
+    private int maxGoalsToWin = 2;
+    private Color32 blueColor = new Color32(29, 67, 243, 255);
+    private Color32 redColor = new Color32(204, 0, 0, 255);
 
     void Start()
     {
