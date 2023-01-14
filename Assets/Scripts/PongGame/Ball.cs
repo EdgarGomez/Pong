@@ -64,20 +64,34 @@ public class Ball : MonoBehaviour
         winnerMessage.text = color + " Player Wins";
         if (Input.GetKeyDown(KeyCode.R))
         {
+            SceneManager.LoadScene(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
             SceneManager.LoadScene(0);
         }
     }
 
     void GoBall()
     {
-        float rand = Random.Range(0, 2);
-        if (rand < 1)
+        float rand = Random.Range(0, 4);
+        switch (rand)
         {
-            rb.velocity = (-Vector2.up + Vector2.right).normalized * speed;
-        }
-        else
-        {
-            rb.velocity = (Vector2.up + -Vector2.right).normalized * speed;
+            case 1:
+                rb.velocity = (-Vector2.up + Vector2.right).normalized * speed;
+                break;
+            case 2:
+                rb.velocity = (Vector2.up + -Vector2.right).normalized * speed;
+                break;
+            case 3:
+                rb.velocity = (Vector2.up + Vector2.right).normalized * speed;
+                break;
+            case 4:
+                rb.velocity = (-Vector2.up + -Vector2.right).normalized * speed;
+                break;
+            default:
+                rb.velocity = (-Vector2.up + Vector2.right).normalized * speed;
+                break;
         }
     }
 
