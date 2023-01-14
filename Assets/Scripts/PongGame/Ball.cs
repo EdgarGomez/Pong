@@ -18,6 +18,8 @@ public class Ball : MonoBehaviour
     int maxGoalsToWin = 2;
     Color32 blueColor = new Color32(29, 67, 243, 255);
     Color32 redColor = new Color32(204, 0, 0, 255);
+    public ParticleSystem blueParticles;
+    public ParticleSystem redParticles;
 
     void Start()
     {
@@ -89,17 +91,17 @@ public class Ball : MonoBehaviour
     {
         if (other.CompareTag("LeftGoalLine"))
         {
+            blueParticles.Play();
             bluePlayerGoalsCounter = bluePlayerGoalsCounter + 1;
             bluePlayerGoalsText.text = (bluePlayerGoalsCounter).ToString();
-            ResetBall();
             RestartGame();
         }
 
         if (other.CompareTag("RightGoalLine"))
         {
+            redParticles.Play();
             redPlayerGoalsCounter = redPlayerGoalsCounter + 1;
             redPlayerGoalsText.text = (redPlayerGoalsCounter).ToString();
-            ResetBall();
             RestartGame();
         }
     }
