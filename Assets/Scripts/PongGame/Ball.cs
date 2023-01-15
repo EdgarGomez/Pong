@@ -16,9 +16,17 @@ public class Ball : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI optionsMessage;
     [SerializeField]
+    private AudioClip wallsAudio;
+    [SerializeField]
+    private AudioClip goalAudio;
+    [SerializeField]
+    private AudioClip paddelsAudio;
+    [SerializeField]
     private ParticleSystem blueParticles;
     [SerializeField]
     private ParticleSystem redParticles;
+    [SerializeField]
+    private ParticleSystem ballParticles;
     private float speed = 10f;
     private Rigidbody2D rb;
     private int bluePlayerGoalsCounter = 0;
@@ -26,10 +34,12 @@ public class Ball : MonoBehaviour
     private int maxGoalsToWin = 2;
     private Color32 blueColor = new Color32(29, 67, 243, 255);
     private Color32 redColor = new Color32(204, 0, 0, 255);
+    private AudioSource gameSounds;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        gameSounds = GetComponent<AudioSource>();
         Invoke("GoBall", 1);
     }
 
@@ -111,6 +121,7 @@ public class Ball : MonoBehaviour
     {
         if (other.CompareTag("LeftGoalLine"))
         {
+            gameSounds.PlayOneShot(goalAudio);
             blueParticles.Play();
             bluePlayerGoalsCounter = bluePlayerGoalsCounter + 1;
             bluePlayerGoalsText.text = (bluePlayerGoalsCounter).ToString();
@@ -119,10 +130,25 @@ public class Ball : MonoBehaviour
 
         if (other.CompareTag("RightGoalLine"))
         {
+            gameSounds.PlayOneShot(goalAudio);
             redParticles.Play();
             redPlayerGoalsCounter = redPlayerGoalsCounter + 1;
             redPlayerGoalsText.text = (redPlayerGoalsCounter).ToString();
             RestartGame();
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("TopBottomWalls"))
+        {
+            gameSounds.PlayOneShot(wallsAudio);
+            ballParticles.Play();
+        }
+        if (other.gameObject.CompareTag("BluePlayer") || other.gameObject.CompareTag("RedPlayer"))
+        {
+            gameSounds.PlayOneShot(paddelsAudio);
+            ballParticles.Play();
         }
     }
 }

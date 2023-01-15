@@ -14,6 +14,6 @@ public class ButtonActions : MonoBehaviour
     {
         Application.Quit();
         // Only for dev purposes - Remove
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
     }
 }
