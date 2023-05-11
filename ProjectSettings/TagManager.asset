@@ -10,6 +10,7 @@ TagManager:
   - Ball
   - LeftGoalLine
   - RightGoalLine
+  - Paddle
   layers:
   - Default
   - TransparentFX
